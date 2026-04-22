@@ -22,8 +22,8 @@
 
     const lines = [
       { t: 400,  html: '<span class="muted">Last login: Mon Apr 20 14:22 on ttys003</span>' },
-      { t: 600,  html: '<span class="ps">➜</span> <span class="hi">~/projects/api</span> <span class="muted">$</span> <span class="type" data-text="npx @lesquel/opencode-pilot init"></span>' },
-      { t: 2200, html: '<span class="muted">↓</span> fetching <span class="hi">@lesquel/opencode-pilot@1.13.10</span>' },
+      { t: 600,  html: '<span class="ps">➜</span> <span class="hi">~/projects/api</span> <span class="muted">$</span> <span class="type" data-text="bunx @lesquel/opencode-pilot init"></span>' },
+      { t: 2200, html: '<span class="muted">↓</span> fetching <span class="hi">@lesquel/opencode-pilot@1.14.1</span>' },
       { t: 2600, html: '<span class="muted">↓</span> fetching <span class="hi">@opencode-ai/plugin@latest</span>' },
       { t: 2900, html: '<span class="ok">✓</span> <span class="muted">located config: </span><span class="hi">~/.config/opencode</span>' },
       { t: 3200, html: '<span class="ok">✓</span> <span class="muted">writing </span><span class="hi">opencode.json::plugin</span>' },
@@ -34,13 +34,13 @@
       { t: 4700, html: '<span class="ps">➜</span> <span class="hi">~/projects/api</span> <span class="muted">$</span> opencode' },
       { t: 5200, html: '' },
       { t: 5300, html: '<span class="ok">┌───────────────────────────────────────────┐</span>' },
-      { t: 5400, html: '<span class="ok">│</span>  <span class="hi">opencode-pilot</span> <span class="muted">v1.13.10 · loaded</span>         <span class="ok">│</span>' },
+      { t: 5400, html: '<span class="ok">│</span>  <span class="hi">opencode-pilot</span> <span class="muted">v1.14.1 · loaded</span>         <span class="ok">│</span>' },
       { t: 5500, html: '<span class="ok">│</span>                                           <span class="ok">│</span>' },
       { t: 5600, html: '<span class="ok">│</span>  <span class="muted">URL:</span> <span class="ok">http://127.0.0.1:4097</span>          <span class="ok">│</span>' },
       { t: 5700, html: '<span class="ok">│</span>  <span class="muted">Token:</span> <span class="hi">4a9c-2f1b-8d30-ee77</span>         <span class="ok">│</span>' },
       { t: 5800, html: '<span class="ok">│</span>  <span class="muted">Phone: press</span> <span class="hi">c</span> <span class="muted">in dashboard for QR</span> <span class="ok">│</span>' },
       { t: 5900, html: '<span class="ok">└───────────────────────────────────────────┘</span>' },
-      { t: 6300, html: '<span class="ps">›</span> <span class="muted">ready. press</span> <span class="hi">/pilot</span> <span class="muted">anytime.</span><span class="cursor" style="display:inline-block;width:.55ch;height:.85em;background:var(--accent);margin-left:2px;vertical-align:baseline"></span>' }
+      { t: 6300, html: '<span class="ps">›</span> <span class="muted">ready. press</span> <span class="hi">/remote</span> <span class="muted">anytime.</span><span class="cursor" style="display:inline-block;width:.55ch;height:.85em;background:var(--accent);margin-left:2px;vertical-align:baseline"></span>' }
     ];
 
     const timeouts = [];

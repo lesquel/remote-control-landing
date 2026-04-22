@@ -4,7 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#07090a" />
-  <title>opencode-pilot — remote control para OpenCode</title>
+  <meta name="title" content="OpenCode Pilot — Dashboard remoto para OpenCode" />
+  <meta name="description" content="Plugin oficial de control remoto para OpenCode. Dashboard web multi-proyecto, streaming SSE en vivo, PWA móvil, notificaciones Telegram y Web Push, túnel opcional con cloudflared o ngrok. Instalás con un comando." />
+  <meta name="keywords" content="opencode, plugin, ai-agent, remote-control, dashboard, pwa, telegram-bot, web-push, cloudflared, ngrok, qr-code, developer-tools" />
+  <title>OpenCode Pilot — Dashboard remoto para OpenCode</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,15 +34,14 @@
       <div class="logo">
         <span class="dot"></span>
         <span class="label">@lesquel/opencode-pilot</span>
-        <span class="ver">v1.13.10</span>
+        <span class="ver">v1.14.1</span>
       </div>
 
       <div class="links" id="navLinks">
         <a href="#features">Features</a>
-        <a href="#dashboard">Dashboard</a>
-        <a href="#install">Install</a>
-        <a href="#config">Config</a>
-        <a href="#docs">Docs</a>
+        <a href="#problem">Problema</a>
+        <a href="#install">Instalar</a>
+        <a href="#usecases">Casos de uso</a>
         <a href="https://github.com/lesquel/open-remote-control" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
 
@@ -56,17 +58,14 @@
     <div class="wrap">
       <div class="hero-grid">
         <div>
-          <span class="tag"><span class="blink"></span> MIT · Remote control plugin · OpenCode</span>
+          <span class="tag"><span class="blink"></span> MIT · Plugin oficial · OpenCode</span>
           <h1 class="hero-title" data-glitch="true">
-            Controla <span class="accent">OpenCode</span><br/>
-            desde cualquier<br/>
-            pantalla.<span class="cursor"></span>
+            Controlá <span class="accent">OpenCode</span><br/>
+            desde el<br/>
+            teléfono.<span class="cursor"></span>
           </h1>
           <p class="hero-sub">
-            Plugin para <em>OpenCode</em> que expone un dashboard web ligero: monitorea
-            sesiones en vivo, envía prompts, aprueba permisos, cambia agentes y recibe
-            notificaciones — desde el portátil, el móvil o un túnel público.
-            <strong style="color:var(--fg)">Instálalo una vez,</strong> funciona en todos tus proyectos.
+            Dashboard web con pestañas multi-proyecto, streaming en vivo vía SSE, notificaciones por Telegram y Web Push, túnel público opcional, y una PWA para seguir la sesión desde el celular. <strong style="color:var(--fg)">Un solo comando instala todo.</strong>
           </p>
 
           <div class="hero-ctas">
@@ -75,9 +74,9 @@
           </div>
 
           <div class="stat-row">
-            <div><b>~9,000</b> LOC vanilla ES · sin build step</div>
-            <div><b>181</b> tests · Bun runner · TypeScript strict</div>
-            <div><b>0</b> per-project setup</div>
+            <div><b>232</b> tests · TypeScript strict</div>
+            <div><b>~9,000</b> LOC vanilla ES</div>
+            <div><b>0</b> setup por proyecto</div>
           </div>
         </div>
 
@@ -94,10 +93,49 @@
     </div>
   </header>
 
+  <!-- ============ PROBLEMA ============ -->
+  <section class="block" id="problem" data-screen-label="problem">
+    <div class="wrap">
+      <div class="eyebrow">// 01 · El problema</div>
+      <h2 class="section-title">OpenCode corre perfecto mientras estés frente a él.</h2>
+      <p class="section-sub">
+        OpenCode es un agente de IA que corre en tu terminal. Funciona perfecto mientras estés sentado frente a él — pero en cuanto te levantás, todo se frena. El agente pide permiso para ejecutar un comando, no hay nadie para aprobarlo. Querés seguir la ejecución desde el teléfono mientras hacés otra cosa, no podés. Abrís otro proyecto en otra terminal y perdés el hilo de lo que estaba haciendo el primero.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px;">
+        <div class="pain-card">
+          <div style="font-size:18px; margin-bottom:8px;">📋</div>
+          <h4>Aprobar permisos sin estar frente a la terminal</h4>
+          <p>Herramientas peligrosas necesitan aprobación, pero no estás ahí.</p>
+        </div>
+        <div class="pain-card">
+          <div style="font-size:18px; margin-bottom:8px;">📱</div>
+          <h4>Seguir sesiones largas desde el sofá</h4>
+          <p>Desde el móvil, otro laptop o cualquier dispositivo en tu red.</p>
+        </div>
+        <div class="pain-card">
+          <div style="font-size:18px; margin-bottom:8px;">🔄</div>
+          <h4>Coordinar varios proyectos simultáneos</h4>
+          <p>Cada uno con su tab. Cambiás de contexto sin perder sesiones.</p>
+        </div>
+        <div class="pain-card">
+          <div style="font-size:18px; margin-bottom:8px;">🔔</div>
+          <h4>Recibir notificaciones cuando termina</h4>
+          <p>Web Push o Telegram — en tiempo real, sin estar en el dashboard.</p>
+        </div>
+        <div class="pain-card">
+          <div style="font-size:18px; margin-bottom:8px;">👥</div>
+          <h4>Compartir el dashboard con colegas</h4>
+          <p>Pair programming asincrónico detrás de un túnel público.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ FEATURES ============ -->
   <section class="block" id="features" data-screen-label="features">
     <div class="wrap">
-      <div class="eyebrow">// 01 · Features</div>
+      <div class="eyebrow">// 02 · Features</div>
       <h2 class="section-title">Todo lo que OpenCode hace, accesible desde el navegador.</h2>
       <p class="section-sub">
         Un servidor HTTP+SSE corre dentro del proceso de OpenCode. El dashboard es una SPA de módulos ES nativos servida desde el mismo origen — sin React, sin build, sin latencia.
@@ -107,38 +145,37 @@
         <button class="tab" role="tab" aria-selected="true"  data-panel="p-dash"><span class="n">01</span> Dashboard</button>
         <button class="tab" role="tab" aria-selected="false" data-panel="p-notif"><span class="n">02</span> Notificaciones</button>
         <button class="tab" role="tab" aria-selected="false" data-panel="p-mobile"><span class="n">03</span> Mobile</button>
-        <button class="tab" role="tab" aria-selected="false" data-panel="p-dev"><span class="n">04</span> Dev</button>
+        <button class="tab" role="tab" aria-selected="false" data-panel="p-advanced"><span class="n">04</span> Avanzado</button>
       </div>
 
       <div class="tab-panel active" id="p-dash">
-        <div class="feat" data-n="01/07"><div class="glyph">▦</div><h3>Sidebar de sesiones</h3><p>Todas tus sesiones agrupadas por carpeta, con filtro por agente. Tabs de proyecto al tope para trabajar en paralelo.</p></div>
-        <div class="feat" data-n="02/07"><div class="glyph">⇄</div><h3>Transcripción en vivo</h3><p>Los mensajes del usuario aparecen al instante; la respuesta del asistente se transmite token a token con SSE.</p></div>
-        <div class="feat" data-n="03/07"><div class="glyph">✓</div><h3>Aprobación de permisos</h3><p>Las tool calls animan pending → running → completed con sus inputs y outputs expandibles inline.</p></div>
-        <div class="feat" data-n="04/07"><div class="glyph">$</div><h3>Panel de coste</h3><p>Totales por sesión, día y semana. Alertas de presupuesto configurables.</p></div>
-        <div class="feat" data-n="05/07"><div class="glyph">◈</div><h3>TODOs pinneados</h3><p>Sobreviven entre sesiones y cambios de proyecto. Siempre a la vista en el panel derecho.</p></div>
-        <div class="feat" data-n="06/07"><div class="glyph">±</div><h3>Diff view</h3><p>Todos los archivos modificados en la sesión actual, con diff coloreado y live filter.</p></div>
+        <div class="feat" data-n="01/06"><div class="glyph">▦</div><h3>Dashboard multi-proyecto</h3><p>Pestañas para todos los proyectos que abriste con OpenCode. Cambiás de contexto sin perder sesiones. Cada tab recuerda sus propias sesiones, mensajes y estado.</p></div>
+        <div class="feat" data-n="02/06"><div class="glyph">⇄</div><h3>Streaming en vivo vía SSE</h3><p>Cada token de la respuesta aparece a medida que OpenCode lo genera. Sin recargar, sin polling, sin latencia. Efecto typewriter real.</p></div>
+        <div class="feat" data-n="03/06"><div class="glyph">✓</div><h3>Aprobación remota de permisos</h3><p>Cuando el agente pide permiso para ejecutar una herramienta, aparece un banner en el dashboard — desde tu celular también. Aprobás o rechazás con un toque. Si hay cola, se muestra el contador 1/N.</p></div>
+        <div class="feat" data-n="04/06"><div class="glyph">⌨</div><h3>Command palette + shortcuts</h3><p>Ctrl/Cmd + K abre la paleta. Cambiás de agente, de modelo, de proveedor, creás sesión nueva, cambiás de proyecto — todo con teclado.</p></div>
+        <div class="feat" data-n="05/06"><div class="glyph">⚙</div><h3>Settings UI</h3><p>Configurás puerto, host, túnel, Telegram, VAPID keys, timeouts y más desde una modal. Se guarda atómicamente en ~/.opencode-pilot/config.json.</p></div>
+        <div class="feat" data-n="06/06"><div class="glyph">📂</div><h3>Browser de archivos con glob</h3><p>Explorás el árbol de archivos del proyecto, buscás por patrón glob con debounce, y abrís archivos para ver su contenido (opt-in).</p></div>
       </div>
 
       <div class="tab-panel" id="p-notif">
-        <div class="feat" data-n="01/04"><div class="glyph">♪</div><h3>Sonido</h3><p>Reproduce un chime cuando el agente termina su turno y la pestaña está oculta.</p></div>
-        <div class="feat" data-n="02/04"><div class="glyph">!</div><h3>Browser notifications</h3><p>Usa la Notifications API nativa cuando el permiso está concedido.</p></div>
-        <div class="feat" data-n="03/04"><div class="glyph">↗</div><h3>Web Push (VAPID)</h3><p>Llegan aunque el navegador esté cerrado. Se generan las claves VAPID con un click desde Settings.</p></div>
-        <div class="feat" data-n="04/04"><div class="glyph">✈</div><h3>Telegram bot</h3><p>Recibe solicitudes de permiso y completions en tu Telegram, con respuesta desde el propio chat.</p></div>
+        <div class="feat" data-n="01/03"><div class="glyph">↗</div><h3>Web Push (VAPID)</h3><p>Recibís notificaciones aunque el dashboard esté cerrado. Se generan las claves VAPID desde Settings con un clic.</p></div>
+        <div class="feat" data-n="02/03"><div class="glyph">✈</div><h3>Bot de Telegram</h3><p>Configurás token + chat ID (con hints en el dashboard). Recibís alertas de permisos, errores y fin de sesión en Telegram.</p></div>
+        <div class="feat" data-n="03/03"><div class="glyph">!</div><h3>Browser notifications</h3><p>Usa la Notifications API nativa cuando el permiso está concedido. Notificaciones inline sin perder la sesión.</p></div>
       </div>
 
       <div class="tab-panel" id="p-mobile">
-        <div class="feat" data-n="01/05"><div class="glyph">▤</div><h3>Drawer sidebar</h3><p>La sidebar se colapsa con backdrop en pantallas pequeñas.</p></div>
-        <div class="feat" data-n="02/05"><div class="glyph">□</div><h3>Modales full-screen</h3><p>Bottom-sheets con swipe-to-close y 44×44px tap targets.</p></div>
-        <div class="feat" data-n="03/05"><div class="glyph">⚏</div><h3>QR pairing</h3><p>Un QR para LAN, otro para túnel público. Empareja en segundos.</p></div>
-        <div class="feat" data-n="04/05"><div class="glyph">⌕</div><h3>Live filter</h3><p>Navegador de archivos con filtro en tiempo real desde el móvil.</p></div>
-        <div class="feat" data-n="05/05"><div class="glyph">✎</div><h3>Prompt desde el móvil</h3><p>Envía prompts, aprueba permisos y cambia agentes como si estuvieras en el escritorio.</p></div>
+        <div class="feat" data-n="01/04"><div class="glyph">▤</div><h3>PWA y soporte móvil</h3><p>La interfaz es responsive. Podés instalar el dashboard como app desde el menú del navegador. Service worker con cache versionado y detección de cambios de red.</p></div>
+        <div class="feat" data-n="02/04"><div class="glyph">⚏</div><h3>QR pairing</h3><p>Un QR para LAN, otro para túnel público. Empareja en segundos desde el celular.</p></div>
+        <div class="feat" data-n="03/04"><div class="glyph">🔗</div><h3>Auto-focus de la carpeta activa</h3><p>/remote levanta el dashboard y automáticamente enfoca la pestaña de la carpeta donde estás trabajando. Si no existe, la crea.</p></div>
+        <div class="feat" data-n="04/04"><div class="glyph">📝</div><h3>Prompt desde el móvil</h3><p>Envía prompts, aprueba permisos y cambia agentes como si estuvieras en el escritorio.</p></div>
       </div>
 
-      <div class="tab-panel" id="p-dev">
-        <div class="feat" data-n="01/04"><div class="glyph">⚙</div><h3>Settings UI</h3><p>Edita port, host, tunnel, Telegram, VAPID y timeouts desde el icono de engranaje. Persiste en <code style="color:var(--fg)">~/.opencode-pilot/config.json</code>.</p></div>
-        <div class="feat" data-n="02/04"><div class="glyph">⌨</div><h3>Command palette</h3><p>Cada acción del dashboard es alcanzable desde <span class="kbd">?</span> o <span class="kbd">⌘K</span>.</p></div>
-        <div class="feat" data-n="03/04"><div class="glyph">∷</div><h3>Multi-view</h3><p>Observa varias sesiones lado a lado en desktop. Auto-oculto en móvil.</p></div>
-        <div class="feat" data-n="04/04"><div class="glyph">∿</div><h3>MCP + LSP</h3><p>Panel derecho con estado de MCP servers, LSP clients, uso de contexto y path del proyecto.</p></div>
+      <div class="tab-panel" id="p-advanced">
+        <div class="feat" data-n="01/05"><div class="glyph">🌐</div><h3>Túnel público opcional</h3><p>PILOT_TUNNEL=cloudflared (o ngrok) y el plugin levanta un túnel automático, detecta la URL, te la muestra en el dashboard y genera un QR.</p></div>
+        <div class="feat" data-n="02/05"><div class="glyph">📊</div><h3>Welcome card + onboarding</h3><p>Primer visitante del dashboard ve un checklist de 4 pasos. Se descarta para siempre con un clic.</p></div>
+        <div class="feat" data-n="03/05"><div class="glyph">🔄</div><h3>Recuperación de token automática</h3><p>Si OpenCode reinició y tu token quedó stale, la pantalla de "token inválido" te deja pegar la URL fresca y extrae el nuevo token sola.</p></div>
+        <div class="feat" data-n="04/05"><div class="glyph">🔧</div><h3>CLI con doctor y uninstall</h3><p>bunx @lesquel/opencode-pilot doctor hace 6 checks de salud en &lt;2 segundos. uninstall revierte toda la instalación (opcional --keep-config).</p></div>
+        <div class="feat" data-n="05/05"><div class="glyph">💡</div><h3>Hints y validación inline</h3><p>Cada campo de Settings tiene un hint con dónde conseguir el valor. Al perder foco, valida formato básico sin bloquear el save.</p></div>
       </div>
     </div>
   </section>
@@ -146,7 +183,7 @@
   <!-- ============ DASHBOARD MOCKUP ============ -->
   <section class="block" id="dashboard" data-screen-label="dashboard">
     <div class="wrap">
-      <div class="eyebrow">// 02 · Live dashboard</div>
+      <div class="eyebrow">// 03 · Live dashboard</div>
       <h2 class="section-title">Una SPA vanilla que parece nativa.</h2>
       <p class="section-sub">
         Click en las sesiones para ver cómo cambia la transcripción. Todo corre desde el mismo origen que el proceso de OpenCode — cero latencia artificial.
@@ -247,27 +284,86 @@
     </div>
   </section>
 
-  <!-- ============ HOW IT WORKS / INSTALL ============ -->
+  <!-- ============ ARCHITECTURE / HOW IT WORKS ============ -->
+  <section class="block" id="arch" data-screen-label="arch">
+    <div class="wrap">
+      <div class="eyebrow">// 04 · Cómo funciona</div>
+      <h2 class="section-title">Arquitectura en tres componentes.</h2>
+      <p class="section-sub">
+        El plugin corre dentro del proceso de OpenCode, expone un servidor HTTP+SSE, y el dashboard se conecta vía Bearer token.
+      </p>
+
+      <div style="background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; margin-top: 40px; overflow-x: auto;">
+        <pre style="margin: 0; font-size: 13px; line-height: 1.6;">┌─────────────────────┐      ┌─────────────────────┐
+│   OpenCode TUI      │      │   Dashboard web     │
+│   (tu terminal)     │      │   (cualquier navegador)│
+└──────────┬──────────┘      └──────────┬──────────┘
+           │                            │
+           │    hooks del SDK           │    HTTP + SSE
+           │                            │
+           └──────────┬─────────────────┘
+                      │
+           ┌──────────▼──────────┐
+           │  Plugin server      │
+           │  (Bun.serve)        │
+           │                     │
+           │  • Permisos queue   │
+           │  • Event bus (SSE)  │
+           │  • Settings store   │
+           │  • Audit log        │
+           │  • Telegram bot     │
+           │  • Tunnel service   │
+           │  • Web Push         │
+           │  • Multi-instance   │
+           │    coordinator      │
+           └─────────────────────┘</pre>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px;">
+        <div class="arch-step">
+          <h4>1. Instalás</h4>
+          <p>bunx @lesquel/opencode-pilot init. El CLI edita opencode.json y tui.json para registrar el plugin.</p>
+        </div>
+        <div class="arch-step">
+          <h4>2. Reabrís OpenCode</h4>
+          <p>El plugin arranca un servidor HTTP en 127.0.0.1:4097, escribe el token en ~/.opencode-pilot/pilot-state.json, y carga los slash commands.</p>
+        </div>
+        <div class="arch-step">
+          <h4>3. Corrés /remote</h4>
+          <p>El plugin abre tu navegador con un hash #dir=&lt;carpeta-actual&gt; que el dashboard usa para auto-enfocar la pestaña correcta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INSTALL ============ -->
   <section class="block" id="install" data-screen-label="install">
     <div class="wrap">
-      <div class="eyebrow">// 03 · How it works</div>
-      <h2 class="section-title">Tres pasos. Un comando. Cero configuración por proyecto.</h2>
+      <div class="eyebrow">// 05 · Instalación</div>
+      <h2 class="section-title">Un comando. Tres pasos. Cero configuración.</h2>
       <p class="section-sub">
-        El instalador localiza tu config dir de OpenCode, registra el plugin en <code style="color:var(--fg)">opencode.json</code> y <code style="color:var(--fg)">tui.json</code>, y limpia wrappers viejos.
+        El instalador localiza tu config dir de OpenCode (XDG, APPDATA, etc.), registra el plugin en opencode.json y tui.json, y limpia wrappers viejos.
       </p>
 
       <div class="steps">
         <div class="step">
+          <h4>Pre-requisitos</h4>
+          <p>OpenCode instalado (npm i -g opencode o tu método preferido). Bun (recomendado) o Node moderno.</p>
+          <div style="color: var(--fg-dim); margin-top: 12px; font-size: 12px;">
+            ✓ OpenCode ≥ 0.1.0 · ✓ Node 18+ o Bun · ✓ APPDATA/XDG_CONFIG_HOME accesibles
+          </div>
+        </div>
+        <div class="step">
           <h4>Ejecuta el init</h4>
           <p>Una sola línea. Detecta XDG_CONFIG_HOME / APPDATA automáticamente.</p>
           <div class="cmd">
-            <span class="ps">$</span><span>npx @lesquel/opencode-pilot init</span>
-            <button class="cp" type="button" data-copy="npx @lesquel/opencode-pilot init">copy</button>
+            <span class="ps">$</span><span>bunx @lesquel/opencode-pilot init</span>
+            <button class="cp" type="button" data-copy="bunx @lesquel/opencode-pilot init">copy</button>
           </div>
         </div>
         <div class="step">
           <h4>Reabre OpenCode</h4>
-          <p>Cierra todas las sesiones TUI y reabre. Verás un toast: <em style="color:var(--fg);font-style:normal">"Remote control plugin loaded"</em>.</p>
+          <p>Cierra todas las sesiones TUI y reabre. Verás un toast: "Remote control plugin loaded".</p>
           <div class="cmd">
             <span class="ps">$</span><span>opencode</span>
             <button class="cp" type="button" data-copy="opencode">copy</button>
@@ -275,11 +371,73 @@
         </div>
         <div class="step">
           <h4>Abre el dashboard</h4>
-          <p>El banner imprime URL, token y QR. Usa <span class="kbd">/pilot</span> o <span class="kbd">/remote</span> dentro del TUI en cualquier momento.</p>
+          <p>Tipeá /remote en el TUI. Se abre el navegador. El banner imprime URL, token y QR.</p>
           <div class="cmd">
-            <span class="ps">›</span><span>/pilot</span>
-            <button class="cp" type="button" data-copy="/pilot">copy</button>
+            <span class="ps">›</span><span>/remote</span>
+            <button class="cp" type="button" data-copy="/remote">copy</button>
           </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 40px; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px;">
+        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-dim); margin-bottom: 16px;">Desinstalar</div>
+        <div style="display: grid; gap: 12px;">
+          <div class="cmd">
+            <span class="ps">$</span><span>bunx @lesquel/opencode-pilot uninstall</span>
+            <button class="cp" type="button" data-copy="bunx @lesquel/opencode-pilot uninstall">copy</button>
+          </div>
+          <div style="font-size: 12px; color: var(--fg-dim);">Borra todo (config + state)</div>
+          <div class="cmd" style="margin-top: 12px;">
+            <span class="ps">$</span><span>bunx @lesquel/opencode-pilot uninstall --keep-config</span>
+            <button class="cp" type="button" data-copy="bunx @lesquel/opencode-pilot uninstall --keep-config">copy</button>
+          </div>
+          <div style="font-size: 12px; color: var(--fg-dim);">Preserva ~/.opencode-pilot/config.json</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px;">
+        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-dim); margin-bottom: 16px;">Diagnóstico</div>
+        <div class="cmd">
+          <span class="ps">$</span><span>bunx @lesquel/opencode-pilot doctor</span>
+          <button class="cp" type="button" data-copy="bunx @lesquel/opencode-pilot doctor">copy</button>
+        </div>
+        <div style="font-size: 12px; color: var(--fg-dim); margin-top: 12px;">
+          Reporta en &lt;2s: plugin instalado, config edits presentes, OpenCode corriendo, pilot responsivo, state file válido.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ USE CASES ============ -->
+  <section class="block" id="usecases" data-screen-label="usecases">
+    <div class="wrap">
+      <div class="eyebrow">// 06 · Casos de uso</div>
+      <h2 class="section-title">Situaciones reales en las que OpenCode Pilot cambia el juego.</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px;">
+        <div class="usecase">
+          <h4>Desarrollador solo que quiere aprobar desde el celular</h4>
+          <p>Tu agente está ejecutando un refactor largo. Te levantás a hacer café. En el celular, una notificación Web Push te avisa que el agente pide permiso para ejecutar <code>rm -rf node_modules</code>. Aprobás desde el celular con un toque.</p>
+        </div>
+        <div class="usecase">
+          <h4>Equipo que colabora revisando sesiones</h4>
+          <p>Activás el túnel (PILOT_TUNNEL=cloudflared). El dashboard queda accesible con un link público. Un colega sigue la sesión en tiempo real para hacer pair programming asincrónico.</p>
+        </div>
+        <div class="usecase">
+          <h4>Quien trabaja en varios proyectos simultáneos</h4>
+          <p>Tenés OpenCode corriendo en 3 terminales distintas, en 3 proyectos distintos. Abrís el dashboard y las 3 aparecen como pestañas. Cambiás entre proyectos sin perder estado.</p>
+        </div>
+        <div class="usecase">
+          <h4>Debug de sesiones remotas</h4>
+          <p>Necesitás ver qué hizo el agente hace 2 horas en el servidor de CI. Te conectás al túnel, abrís la sesión en el dashboard, leés el histórico completo, descargás el diff.</p>
+        </div>
+        <div class="usecase">
+          <h4>Integración con notificaciones del equipo</h4>
+          <p>Bot de Telegram conectado a un canal del equipo. Cada vez que un agente termina una tarea larga, el canal recibe el resumen. Todo el equipo ve el progreso sin cargar un dashboard.</p>
+        </div>
+        <div class="usecase">
+          <h4>Testing en múltiples redes</h4>
+          <p>PILOT_HOST=0.0.0.0 en desarrollo, cloudflared en producción. Mismo código, diferente alcance. Ideal para testing con múltiples dispositivos.</p>
         </div>
       </div>
     </div>
@@ -464,8 +622,8 @@
       <div class="install-row">
         <div class="install-cmd">
           <span class="ps">$</span>
-          <span class="text">npx @lesquel/opencode-pilot init</span>
-          <button class="cp" type="button" data-copy="npx @lesquel/opencode-pilot init">copy</button>
+          <span class="text">bunx @lesquel/opencode-pilot init</span>
+          <button class="cp" type="button" data-copy="bunx @lesquel/opencode-pilot init">copy</button>
         </div>
         <a class="btn btn-primary" href="https://github.com/lesquel/open-remote-control" target="_blank" rel="noopener">→ GitHub repo</a>
       </div>
