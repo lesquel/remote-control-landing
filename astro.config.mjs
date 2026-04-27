@@ -32,9 +32,4 @@ export default defineConfig({
       lastmod: new Date(),
     }),
   ],
-  vite: {
-    build: {
-      cssMinify: 'lightningcss',
-    },
-  },
 });
