@@ -1,0 +1,35 @@
+---
+import { STRINGS, type Lang } from '~/i18n/strings';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = STRINGS[lang].tweaks;
+---
+
+<div class="tweaks" id="tweaks">
+  <div class="th">
+    <span>{t.heading}</span>
+    <span style="color:var(--fg-dim); font-size:10px; letter-spacing: 0">{t.sub}</span>
+  </div>
+  <div class="tk">
+    <label>{t.colorTheme}</label>
+    <div class="swatches">
+      <div class="sw green"  data-theme="terminal-green" title="terminal green">●</div>
+      <div class="sw amber"  data-theme="amber"          title="amber">●</div>
+      <div class="sw violet" data-theme="violet"         title="violet">●</div>
+      <div class="sw light"  data-theme="mono-light"     title="mono light">●</div>
+    </div>
+  </div>
+  <div class="tk">
+    <label>{t.bgGrid}</label>
+    <div class="tog"><input type="checkbox" id="tkGrid" /><span>{t.bgGridHint}</span></div>
+  </div>
+  <div class="tk">
+    <label>{t.scanlines}</label>
+    <div class="tog"><input type="checkbox" id="tkScan" /><span>{t.scanlinesHint}</span></div>
+  </div>
+  <div class="tk">
+    <label>{t.heroGlitch}</label>
+    <div class="tog"><input type="checkbox" id="tkGlitch" /><span>{t.heroGlitchHint}</span></div>
+  </div>
+</div>

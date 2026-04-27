@@ -1,0 +1,37 @@
+---
+import { STRINGS, type Lang } from '~/i18n/strings';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = STRINGS[lang].nav;
+
+const VERSION = 'v1.18.2';
+const REPO = 'https://github.com/lesquel/open-remote-control';
+---
+
+<nav class="top">
+  <div class="wrap row">
+    <div class="logo">
+      <span class="dot"></span>
+      <span class="label">@lesquel/opencode-pilot</span>
+      <span class="ver">{VERSION}</span>
+    </div>
+
+    <div class="links" id="navLinks">
+      <a href="#features">{t.features}</a>
+      <a href="#multicli">{t.multicli}</a>
+      <a href="#install">{t.install}</a>
+      <a href="#roadmap">{t.roadmap}</a>
+      <a href={REPO} target="_blank" rel="noopener">{t.github}</a>
+    </div>
+
+    <button class="nav-toggle" type="button" aria-label={t.openMenu} aria-controls="navLinks" aria-expanded="false">☰</button>
+
+    <LanguageSwitcher lang={lang} />
+
+    <button class="theme-toggle" id="themeToggle" type="button" title="Toggle theme">
+      <span id="themeLabel">{t.themeLabel}</span>
+    </button>
+  </div>
+</nav>

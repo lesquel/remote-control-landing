@@ -1,0 +1,57 @@
+---
+import { STRINGS, type Lang } from '~/i18n/strings';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = STRINGS[lang].shortcuts;
+---
+
+<section class="block" data-screen-label="shortcuts">
+  <div class="wrap">
+    <div class="eyebrow" data-animate>{t.eyebrow}</div>
+    <h2 class="section-title" data-animate data-delay="1">{t.title}</h2>
+    <p class="section-sub" data-animate data-delay="2">
+      {t.sub} <span class="kbd accent">?</span> {t.subTail}
+    </p>
+
+    <div class="two-col">
+      <div class="kcard" data-animate data-delay="1" data-tilt>
+        <h4>{t.kbTitle} <span>{t.kbScope}</span></h4>
+        {t.kb.map((k) => (
+          <div class="krow">
+            <div class="desc" set:html={k.desc} />
+            {k.key.includes(' ') ? (
+              <span>{k.key.split(' ').map((part) => <span class={`kbd${k.accent ? ' accent' : ''}`}>{part}</span>)}</span>
+            ) : (
+              <span class={`kbd${k.accent ? ' accent' : ''}`}>{k.key}</span>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div class="kcard" data-animate data-delay="2" data-tilt>
+        <h4>{t.slashTitle} <span>{t.slashScope}</span></h4>
+        {t.slash.map((s) => (
+          <div class="krow">
+            <div class="desc" set:html={s.desc} />
+            <span class={`kbd${s.accent ? ' accent' : ''}`}>{s.key}</span>
+          </div>
+        ))}
+        <div class="kcard-note" set:html={t.slashNote} />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .kcard-note {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--line);
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--fg-muted);
+    line-height: 1.55;
+  }
+  .kcard-note :global(code) { color: var(--accent); }
+</style>

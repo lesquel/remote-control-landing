@@ -1,0 +1,49 @@
+---
+import { LOCALES, LOCALE_LABELS, localePath, type Lang } from '~/i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+---
+
+<div class="lang-switch" role="group" aria-label="Language">
+  {LOCALES.map((l) => (
+    <a
+      href={localePath(l)}
+      class:list={['lang-link', { active: l === lang }]}
+      hreflang={l}
+      lang={l}
+      aria-current={l === lang ? 'page' : undefined}
+    >
+      {LOCALE_LABELS[l]}
+    </a>
+  ))}
+</div>
+
+<style>
+  .lang-switch {
+    display: inline-flex;
+    border: 1px solid var(--line-2);
+    border-radius: var(--radius);
+    overflow: hidden;
+    flex-shrink: 0;
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+  .lang-link {
+    padding: 6px 9px;
+    color: var(--fg-muted);
+    border-right: 1px solid var(--line-2);
+    text-decoration: none !important;
+    transition: color 0.15s ease, background 0.15s ease;
+    min-height: 30px;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+  }
+  .lang-link:last-child { border-right: none; }
+  .lang-link:hover { color: var(--fg); background: var(--bg-2); }
+  .lang-link.active {
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+</style>

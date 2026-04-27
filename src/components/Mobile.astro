@@ -1,0 +1,70 @@
+---
+import { STRINGS, type Lang } from '~/i18n/strings';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = STRINGS[lang].mobile;
+---
+
+<section class="block" data-screen-label="mobile">
+  <div class="wrap">
+    <div class="phone-section">
+      <div data-animate>
+        <div class="eyebrow">{t.eyebrow}</div>
+        <h2 class="section-title">{t.title}</h2>
+        <p class="section-sub">
+          {t.sub} <code style="color:var(--fg)">{t.subCode1}</code>{t.subMid}
+        </p>
+        <div class="mobile-vars">
+          <div>
+            <div class="lbl">{t.lan}</div>
+            <code class="val">{t.lanCode}</code>
+          </div>
+          <div>
+            <div class="lbl">{t.tunnel}</div>
+            <code class="val">{t.tunnelCode}</code>
+          </div>
+          <div>
+            <div class="lbl">{t.shortcut}</div>
+            <span class="kbd accent">{t.shortcutKey}</span>
+          </div>
+        </div>
+        <p class="security-note">
+          <span class="lock">🔒</span> {t.securityNote} <code>{t.securityCode}</code>.
+        </p>
+      </div>
+
+      <div data-animate data-delay="2">
+        <div class="phone">
+          <div class="screen">
+            <h5>{t.phoneTitle}</h5>
+            <div class="mini">{t.phoneSub}</div>
+            <div class="qr-tabs">
+              <button type="button" class="on" data-qr="lan">LAN</button>
+              <button type="button" data-qr="tunnel">Tunnel</button>
+            </div>
+            <div class="qr" id="qr"></div>
+            <div class="phone-url" id="phoneUrl">192.168.1.14:4097/?t=4a9c…</div>
+            <div class="latency">{t.phoneLatency}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .mobile-vars { display: flex; gap: 32px; margin-top: 28px; flex-wrap: wrap; }
+  .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-dim); margin-bottom: 6px; }
+  .val { color: var(--accent); font-size: 12px; font-family: var(--mono); }
+  .security-note {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--fg-muted);
+    margin-top: 32px;
+    max-width: 460px;
+  }
+  .security-note code { color: var(--fg); }
+  .lock { color: var(--accent); }
+  .latency { text-align: center; font-size: 10px; color: var(--fg-dim); margin-top: auto; }
+</style>

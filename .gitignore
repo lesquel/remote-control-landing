@@ -1,0 +1,19 @@
+# build / deps
+node_modules/
+dist/
+.astro/
+
+# bun
+bun.lockb
+
+# editor / OS
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*.swo
+
+# env
+.env
+.env.local
+.env.*.local

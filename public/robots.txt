@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://opencode-pilot.dev/sitemap-index.xml

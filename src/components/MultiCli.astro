@@ -1,0 +1,123 @@
+---
+import { STRINGS, type Lang } from '~/i18n/strings';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = STRINGS[lang].multicli;
+---
+
+<section class="block" id="multicli" data-screen-label="multicli">
+  <div class="wrap">
+    <div class="eyebrow" data-animate>{t.eyebrow}</div>
+    <h2 class="section-title" data-animate data-delay="1">{t.title}</h2>
+    <p class="section-sub" data-animate data-delay="2">{t.sub}</p>
+
+    <div class="multicli-grid">
+      <div class="multicli-card" data-tilt data-animate data-delay="1">
+        <div class="multicli-badge">{t.openCodeBadge}</div>
+        <h4>{t.openCodeTitle}</h4>
+        <p>{t.openCodeBody}</p>
+        <pre><code>{`integrations/opencode/
+  ├── index.ts           # opencodeIntegration
+  └── hooks/
+      ├── event.ts
+      ├── permission.ask.ts
+      └── tool.ts`}</code></pre>
+      </div>
+
+      <div class="multicli-card" data-tilt data-animate data-delay="2">
+        <div class="multicli-badge">{t.codexBadge}</div>
+        <h4>{t.codexTitle}</h4>
+        <p>{t.codexBody}</p>
+        <pre><code>{`# ~/.codex/config.toml
+[hooks]
+endpoint = "http://127.0.0.1:4097/codex/hooks"
+token = "\${PILOT_HOOK_TOKEN}"`}</code></pre>
+      </div>
+    </div>
+
+    <div class="hooks-table" data-animate data-delay="3">
+      <table>
+        <thead>
+          <tr><th>{t.tableMethod}</th><th>{t.tablePath}</th><th>{t.tableDesc}</th></tr>
+        </thead>
+        <tbody>
+          {t.hooks.map((h) => (
+            <tr>
+              <td class="m">{h.method}</td>
+              <td class="p"><code>{h.path}</code></td>
+              <td class="d">{h.desc}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .multicli-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .multicli-card { position: relative; overflow: hidden; }
+  .multicli-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid color-mix(in oklch, var(--accent) 40%, transparent);
+    padding: 2px 6px;
+    border-radius: 99px;
+    background: var(--accent-soft);
+  }
+  .multicli-card pre {
+    margin: 14px 0 0;
+    padding: 12px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 11px;
+    color: var(--fg-muted);
+    line-height: 1.55;
+  }
+  .multicli-card pre code { color: inherit; background: transparent; padding: 0; font-family: var(--mono); }
+
+  .hooks-table {
+    margin-top: 32px;
+    border: 1px solid var(--line);
+    background: var(--bg-1);
+    overflow-x: auto;
+  }
+  .hooks-table table { border-collapse: collapse; width: 100%; min-width: 540px; }
+  .hooks-table th, .hooks-table td {
+    text-align: left;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--line);
+    font-size: 12px;
+  }
+  .hooks-table th {
+    background: var(--bg-2);
+    color: var(--fg-muted);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .hooks-table td.m { color: var(--accent); font-weight: 600; white-space: nowrap; }
+  .hooks-table td.p code {
+    color: var(--fg);
+    font-family: var(--mono);
+    background: transparent;
+    padding: 0;
+  }
+  .hooks-table td.d { color: var(--fg-muted); font-family: var(--sans); }
+  .hooks-table tr:last-child td { border-bottom: none; }
+  .hooks-table tr:hover td { background: var(--bg-2); }
+</style>

@@ -1,14 +1,5 @@
 /* ==========================================================================
    opencode-pilot landing — responsive layer
-   Breakpoints (mobile-first overrides apply where convenient,
-   then desktop-first overrides for larger components):
-
-     >= 1100px  desktop  (defaults)
-     <= 1100px  small desktop / large tablet
-     <=  900px  tablet
-     <=  720px  large mobile
-     <=  520px  mobile
-     <=  380px  small mobile
    ========================================================================== */
 
 /* ---------- <= 1100px — small desktop / large tablet --------------------- */
@@ -34,13 +25,8 @@
     --hero-pad-bot: 40px;
   }
 
-  /* Hero stacks */
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
+  .hero-grid { grid-template-columns: 1fr; gap: 36px; }
 
-  /* Dashboard collapses to single column */
   .dash {
     grid-template-columns: 1fr;
     min-height: 0;
@@ -48,13 +34,8 @@
   .dash .sidebar,
   .dash .info { display: none; }
 
-  /* Two-col stacks */
   .two-col { grid-template-columns: 1fr; gap: 24px; }
-
-  /* Phone section stacks */
   .phone-section { grid-template-columns: 1fr; gap: 40px; }
-
-  /* Steps and features collapse */
   .steps { grid-template-columns: 1fr 1fr; }
   .tab-panel { grid-template-columns: 1fr 1fr; }
   .doc-grid  { grid-template-columns: 1fr 1fr; }
@@ -71,7 +52,6 @@
 
   body { font-size: 13px; }
 
-  /* Show mobile menu button, hide inline links by default */
   .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
 
   nav.top .links {
@@ -100,64 +80,47 @@
   nav.top .links a:last-child { border-bottom: none; }
 
   .theme-toggle { padding: 8px 10px; }
-
-  /* Tag wraps cleanly */
   .tag { font-size: 10px; padding: 4px 8px; }
-
-  /* Sub copy tighter */
   .hero-sub { margin-bottom: 28px; }
-
-  /* CTAs full width on mobile */
   .hero-ctas { flex-direction: column; align-items: stretch; }
   .hero-ctas .btn { justify-content: center; }
-
-  /* Stat row stacks */
   .stat-row {
     flex-direction: column; gap: 10px;
     margin-top: 32px; padding-top: 18px;
   }
 
-  /* Section headings tighter */
   h2.section-title { margin-bottom: 10px; }
   .section-sub { margin-bottom: 28px; }
 
-  /* Single column grids */
   .steps      { grid-template-columns: 1fr; gap: 16px; }
   .tab-panel  { grid-template-columns: 1fr; }
   .doc-grid   { grid-template-columns: 1fr; }
 
   .step       { padding: 20px; }
   .step::before { font-size: 26px; margin-bottom: 10px; }
-
   .feat       { padding: 22px 20px; min-height: 0; }
 
-  /* Dashboard mock — tighter */
   .dash-head .url { font-size: 10px; padding: 4px 8px; }
   .dash-head .badge { font-size: 10px; }
   .dash .main-head { padding: 10px 14px; gap: 8px; font-size: 10px; }
   .dash .transcript { padding: 14px; gap: 12px; font-size: 12px; }
   .dash .prompt-bar { padding: 10px 14px; }
 
-  /* Terminal smaller */
   .terminal { font-size: 12px; }
   .term-body { min-height: 280px; padding: 16px; }
   .term-head .title { font-size: 10px; }
 
-  /* Cards padding */
   .kcard { padding: 18px; }
 
-  /* Phone slightly smaller */
   .phone { width: 240px; height: 480px; border-radius: 32px; padding: 10px; }
   .phone .screen { border-radius: 24px; padding: 40px 14px 14px; }
   .qr { width: 170px; height: 170px; }
 
-  /* Footer */
   footer { padding: 64px 0 32px; }
   footer .ff { gap: 16px; margin-top: 40px; flex-direction: column; }
   footer .ff .links-right { margin-left: 0; gap: 16px; }
   footer .install-cmd { padding: 12px 14px; }
 
-  /* Tweaks panel — bottom drawer-like on mobile */
   .tweaks {
     right: 12px; left: 12px; bottom: 12px;
     width: auto;
@@ -171,69 +134,49 @@
     --section-pad: 48px;
   }
 
-  /* Logo trims version on tight screens */
   .logo .ver { display: none; }
   .logo .label { font-size: 13px; }
-
-  /* Smaller hero badge */
   h1.hero-title { margin: 14px 0 16px; }
-
-  /* Tabs even tighter */
   .tab { padding: 12px 14px; font-size: 11px; gap: 8px; }
-
-  /* Feat numbers — push into header to avoid overlap */
   .feat::before { top: 12px; right: 14px; font-size: 9px; }
   .feat { padding: 20px 18px; }
   .feat .glyph { width: 32px; height: 32px; font-size: 14px; }
 
-  /* Step cmd: keep button readable */
   .step .cmd { font-size: 10.5px; padding-right: 56px; }
   .step .cmd .cp { font-size: 9px; padding: 3px 6px; }
 
-  /* env table: hide default column on the smallest screens (it's still in DOM) */
   .env-table th:nth-child(2),
   .env-table td:nth-child(2) { display: none; }
   .env-table table { min-width: 0; }
   .env-table th, .env-table td { padding: 8px 12px; }
 
-  /* Dashboard URL more compact */
   .dash-head { gap: 8px; padding: 8px 12px; }
   .dash-head .url { font-size: 9.5px; }
 
-  /* Phone tap targets */
   .qr-tabs button { padding: 8px; min-height: 36px; }
 
-  /* Footer install row stacks fully */
   footer .install-row { flex-direction: column; align-items: stretch; }
   footer .install-row .btn { justify-content: center; }
   footer .install-cmd { min-width: 0; }
   footer .install-cmd .text { font-size: 13px; }
 
-  /* Section eyebrow smaller */
   .eyebrow { font-size: 10px; gap: 8px; }
   .eyebrow::before { width: 20px; }
 
-  /* kcard rows: stack desc + key when very tight */
   .krow { flex-wrap: wrap; }
 }
 
 /* ---------- <= 380px — extra small ------------------------------------- */
 @media (max-width: 380px) {
-  :root {
-    --pad-x: 14px;
-  }
-
+  :root { --pad-x: 14px; }
   h1.hero-title { font-size: 30px; }
-
   .btn { padding: 12px 14px; font-size: 12px; }
-
   .term-body { min-height: 240px; padding: 14px; }
-
   .phone { width: 220px; height: 440px; }
   .qr { width: 150px; height: 150px; padding: 8px; }
 }
 
-/* ---------- Landscape mobile (short height) ----------------------------- */
+/* ---------- Landscape mobile ----------------------------------- */
 @media (max-height: 480px) and (orientation: landscape) {
   .hero { padding: 32px 0 24px; }
   .term-body { min-height: 220px; }

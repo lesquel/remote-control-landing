@@ -1,0 +1,140 @@
+---
+import '~/styles/tokens.css';
+import '~/styles/base.css';
+import '~/styles/responsive.css';
+import '~/styles/effects.css';
+import { ClientRouter } from 'astro:transitions';
+import { STRINGS } from '~/i18n/strings';
+import { type Lang, localePath } from '~/i18n';
+
+interface Props {
+  lang: Lang;
+  /** Optional override for SEO title; defaults to STRINGS[lang].seo.title */
+  title?: string;
+  description?: string;
+}
+
+const { lang, title, description } = Astro.props;
+
+const t = STRINGS[lang].seo;
+const finalTitle = title ?? t.title;
+const finalDescription = description ?? t.description;
+
+const SITE = Astro.site?.toString().replace(/\/$/, '') ?? 'https://opencode-pilot.dev';
+const pathname = Astro.url.pathname;
+const canonical = `${SITE}${pathname}`;
+const ogImage = `${SITE}/og-image.png`;
+
+const hreflangs: { lang: Lang | 'x-default'; href: string }[] = [
+  { lang: 'en',         href: `${SITE}${localePath('en')}` },
+  { lang: 'es',         href: `${SITE}${localePath('es')}` },
+  { lang: 'x-default',  href: `${SITE}${localePath('en')}` },
+];
+
+const softwareJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'OpenCode Pilot',
+  alternateName: '@lesquel/opencode-pilot',
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'macOS, Linux, Windows',
+  url: `${SITE}${localePath('en')}`,
+  description: STRINGS.en.seo.description,
+  softwareVersion: '1.18.2',
+  inLanguage: ['en', 'es'],
+  license: 'https://spdx.org/licenses/MIT.html',
+  codeRepository: 'https://github.com/lesquel/open-remote-control',
+  downloadUrl: 'https://www.npmjs.com/package/@lesquel/opencode-pilot',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  author: {
+    '@type': 'Person',
+    name: 'lesquel',
+    url: 'https://github.com/lesquel',
+  },
+  keywords: STRINGS.en.seo.keywords,
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#07090a" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{finalTitle}</title>
+    <meta name="title" content={finalTitle} />
+    <meta name="description" content={finalDescription} />
+    <meta name="keywords" content={t.keywords} />
+    <meta name="author" content="lesquel" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <link rel="canonical" href={canonical} />
+    {hreflangs.map((h) => (
+      <link rel="alternate" hreflang={h.lang} href={h.href} />
+    ))}
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="OpenCode Pilot" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={finalTitle} />
+    <meta property="og:description" content={finalDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={finalTitle} />
+    <meta property="og:locale" content={t.ogLocale} />
+    <meta property="og:locale:alternate" content={t.ogLocaleAlt} />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={finalTitle} />
+    <meta name="twitter:description" content={finalDescription} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:creator" content="@lesquel" />
+
+    <!-- Performance hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://github.com" />
+    <link rel="dns-prefetch" href="https://www.npmjs.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Geist:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script is:inline>
+      window.TWEAKS = {
+        theme: 'terminal-green',
+        showGrid: true,
+        showScanlines: false,
+        heroGlitch: true,
+      };
+      try {
+        const saved = localStorage.getItem('pilot-theme');
+        if (saved) document.documentElement.setAttribute('data-theme', saved);
+      } catch (_e) { /* noop */ }
+    </script>
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(softwareJsonLd)} />
+
+    <ClientRouter />
+  </head>
+  <body data-grid="true" data-scanlines="false" data-screen-label="landing">
+    <slot />
+
+    <script>
+      import '~/scripts/boot';
+    </script>
+  </body>
+</html>

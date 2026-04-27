@@ -1,0 +1,108 @@
+---
+import { STRINGS, type Lang } from '~/i18n/strings';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = STRINGS[lang].dashboard;
+---
+
+<section class="block" id="dashboard" data-screen-label="dashboard">
+  <div class="wrap">
+    <div class="eyebrow" data-animate>{t.eyebrow}</div>
+    <h2 class="section-title" data-animate data-delay="1">{t.title}</h2>
+    <p class="section-sub" data-animate data-delay="2">{t.sub}</p>
+
+    <div class="dash-wrap" data-animate data-delay="3">
+      <div class="dash-head">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div class="url"><b>https://</b>{t.url}<b>?token=4a9c…</b></div>
+        <div class="badge">{t.badge}</div>
+      </div>
+      <div class="dash" id="dashMock">
+        <aside class="sidebar">
+          <div class="sh"><span>PROJECTS</span><span>+</span></div>
+          <div class="sh" style="color:var(--accent);padding-top:2px">▾ open-remote-control</div>
+          <div class="item active" data-session="0"><span>└</span><span style="flex:1">refactor SSE reconnect</span><span class="ag">build</span></div>
+          <div class="item" data-session="1"><span>└</span><span style="flex:1">codex hook bridge audit</span><span class="ag">plan</span></div>
+          <div class="item" data-session="2"><span>└</span><span style="flex:1">docs/INSTALL review</span><span class="ag">explore</span></div>
+          <div class="sh" style="padding-top:16px">▾ trillionquest-api</div>
+          <div class="item" data-session="3"><span>└</span><span style="flex:1">migrate to drizzle</span><span class="ag">build</span></div>
+          <div class="item" data-session="4"><span>└</span><span style="flex:1">add OAuth PKCE</span><span class="ag">general</span></div>
+        </aside>
+
+        <main class="main">
+          <div class="main-head">
+            <span class="pill" id="dashAgent">agent · build</span>
+            <span id="dashTitle" style="color:var(--fg)">refactor SSE reconnect</span>
+            <span style="margin-left:auto; color:var(--fg-dim)" id="dashCost">$0.42 · 12.4k tok</span>
+          </div>
+          <div class="transcript" id="dashTranscript">
+            <div class="msg user">
+              <div class="who">U</div>
+              <div class="body">SSE reconnect goes wild when I switch networks. Can you add exponential backoff and an explicit pong?</div>
+            </div>
+            <div class="msg bot">
+              <div class="who">A</div>
+              <div class="body">
+                Got it. Adding exponential backoff (1s → 30s max) and a 15s heartbeat with timeout. Editing <code style="color:var(--accent)">src/dashboard/sse.ts</code>.
+                <div class="tool-call">
+                  <div class="tc-head">
+                    <span style="color:var(--fg-dim)">◈</span>
+                    <span class="name">edit</span>
+                    <span style="color:var(--fg-dim)">src/dashboard/sse.ts</span>
+                    <span class="st">completed · 142ms</span>
+                  </div>
+<pre>{`-  const delay = 1000;
++  const delay = Math.min(30_000, 1_000 * 2 ** attempts);
++  scheduleHeartbeat(15_000);`}</pre>
+                </div>
+                <div class="tool-call">
+                  <div class="tc-head">
+                    <span style="color:var(--fg-dim)">◈</span>
+                    <span class="name">bun test</span>
+                    <span style="color:var(--fg-dim)">sse.test.ts</span>
+                    <span class="st" style="color:var(--warn)"><span style="background:var(--warn);width:6px;height:6px;border-radius:50%;display:inline-block"></span> running…</span>
+                  </div>
+<pre>{`[sse] 4 pass · 0 fail · 0 skip
+[runtime] ✓ reconnects with jittered backoff
+[runtime] ✓ heartbeat fires every 15s`}</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="prompt-bar">
+            <input class="inp" placeholder={t.promptPlaceholder} />
+            <span class="kbd">⌘↵</span>
+          </div>
+        </main>
+
+        <aside class="info">
+          <div>
+            <div class="sh">{t.context}</div>
+            <div class="row"><span>{t.tokens}</span><b>12,472 / 200k</b></div>
+            <div class="bar"><span style="width:6%"></span></div>
+          </div>
+          <div>
+            <div class="sh">{t.pinnedTodos}</div>
+            <div class="todo done"><span class="mk">✓</span> Backoff expo. SSE</div>
+            <div class="todo"><span class="mk">◦</span> Heartbeat + pong</div>
+            <div class="todo"><span class="mk">◦</span> Reconnect test</div>
+            <div class="todo"><span class="mk">◦</span> CHANGELOG note</div>
+          </div>
+          <div>
+            <div class="sh">{t.mcpServers}</div>
+            <div class="row"><span>fs</span><b style="color:var(--accent)">● ready</b></div>
+            <div class="row"><span>github</span><b style="color:var(--accent)">● ready</b></div>
+            <div class="row"><span>sqlite</span><b style="color:var(--fg-dim)">○ idle</b></div>
+          </div>
+          <div>
+            <div class="sh">{t.costToday}</div>
+            <div class="row"><span>{t.total}</span><b>$2.37</b></div>
+            <div class="row"><span>{t.budget}</span><b style="color:var(--accent)">$10.00</b></div>
+            <div class="bar"><span style="width:24%"></span></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>

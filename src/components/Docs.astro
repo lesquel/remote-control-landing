@@ -1,0 +1,30 @@
+---
+import { STRINGS, type Lang } from '~/i18n/strings';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = STRINGS[lang].docs;
+
+const REPO_DOCS = 'https://github.com/lesquel/open-remote-control/tree/main/docs';
+---
+
+<section class="block" id="docs" data-screen-label="docs">
+  <div class="wrap">
+    <div class="eyebrow" data-animate>{t.eyebrow}</div>
+    <h2 class="section-title" data-animate data-delay="1">{t.title}</h2>
+    <p class="section-sub" data-animate data-delay="2">
+      {t.sub} <code>{t.subCode}</code>{t.subTail}
+    </p>
+
+    <div class="doc-grid">
+      {t.items.map((d, i) => (
+        <a class="doc-card" href={`${REPO_DOCS}/${d.file}`} target="_blank" rel="noopener" data-animate data-delay={String((i % 3) + 1)}>
+          <div class="fp"><span>docs/</span><b>{d.file}</b></div>
+          <h4>{d.title}</h4>
+          <p>{d.desc}</p>
+          <span class="arrow">{t.readMore}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

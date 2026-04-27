@@ -1,0 +1,71 @@
+---
+import { STRINGS, type Lang } from '~/i18n/strings';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = STRINGS[lang].config;
+---
+
+<section class="block" id="config" data-screen-label="config">
+  <div class="wrap">
+    <div class="eyebrow" data-animate>{t.eyebrow}</div>
+    <h2 class="section-title" data-animate data-delay="1">
+      {t.title} <span class="hl">{t.titleA}</span> {t.titleOr} <span class="hl">{t.titleB}</span>.
+    </h2>
+    <p class="section-sub" data-animate data-delay="2">
+      {t.sub} <code>{t.subPath}</code>{t.subTail} <code>{t.subDot}</code> {t.subTail2}
+    </p>
+
+    <div class="priority-line" data-animate data-delay="3">
+      <span><span class="hl">{t.priority}</span> {t.prioritySteps}</span>
+    </div>
+
+    <div class="env-table" data-animate data-delay="3">
+      <table>
+        <thead>
+          <tr><th>{t.colVar}</th><th>{t.colDef}</th><th>{t.colDesc}</th></tr>
+        </thead>
+        <tbody>
+          {t.vars.map((v) => (
+            <tr class={v.is_new ? 'fresh' : ''}>
+              <td class="var">
+                {v.name}
+                {v.is_new && <span class="new-badge">{t.newBadge}</span>}
+              </td>
+              <td class="def">{v.def}</td>
+              <td class="desc" set:html={v.desc} />
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hl { color: var(--accent); }
+  .priority-line {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--fg-muted);
+    margin-bottom: 14px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .new-badge {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 1px 6px;
+    border-radius: 99px;
+    font-family: var(--sans);
+    font-weight: 600;
+    vertical-align: middle;
+  }
+  :global(.env-table tr.fresh) { background: color-mix(in oklch, var(--accent) 4%, transparent); }
+</style>

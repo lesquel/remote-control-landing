@@ -1,0 +1,38 @@
+---
+import { STRINGS, type Lang } from '~/i18n/strings';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = STRINGS[lang].footer;
+
+const REPO = 'https://github.com/lesquel/open-remote-control';
+const NPM  = 'https://www.npmjs.com/package/@lesquel/opencode-pilot';
+---
+
+<footer>
+  <div class="wrap">
+    <div class="big" data-animate>
+      {t.bigLine1}<br/>
+      <span class="g">{t.bigLine2}</span>
+    </div>
+
+    <div class="install-row" data-animate data-delay="2">
+      <div class="install-cmd">
+        <span class="ps">$</span>
+        <span class="text">{t.installCmd}</span>
+        <button class="cp" type="button" data-copy={t.installCmd}>copy</button>
+      </div>
+      <a class="btn btn-primary" href={REPO} target="_blank" rel="noopener">{t.ctaGithub}</a>
+    </div>
+
+    <div class="ff">
+      <div>{t.copyright}</div>
+      <div style="color:var(--fg-muted)">{t.tech}</div>
+      <div class="links-right">
+        <a href={REPO}>{t.links.github}</a>
+        <a href={NPM}>{t.links.npm}</a>
+        <a href={`${REPO}/blob/main/CHANGELOG.md`} target="_blank" rel="noopener">{t.links.changelog}</a>
+      </div>
+    </div>
+  </div>
+</footer>

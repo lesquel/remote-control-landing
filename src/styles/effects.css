@@ -1,0 +1,147 @@
+/* ==========================================================================
+   Motion & visual effects — Level B
+   - scroll-triggered fade-up
+   - hover tilt for interactive cards
+   - hero parallax + glow refinement
+   - smooth view-transitions
+   ========================================================================== */
+
+/* ----- scroll-in (Intersection Observer adds .in-view) -------------------- */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+  will-change: opacity, transform;
+}
+[data-animate].in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-animate][data-delay="1"].in-view { transition-delay: 80ms; }
+[data-animate][data-delay="2"].in-view { transition-delay: 160ms; }
+[data-animate][data-delay="3"].in-view { transition-delay: 240ms; }
+[data-animate][data-delay="4"].in-view { transition-delay: 320ms; }
+[data-animate][data-delay="5"].in-view { transition-delay: 400ms; }
+
+/* ----- 3D hover tilt for cards -------------------------------------------- */
+[data-tilt] {
+  transform-style: preserve-3d;
+  transition: transform 0.45s var(--ease-out);
+}
+[data-tilt]:hover {
+  transform: perspective(900px) rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg)) translateZ(2px);
+}
+
+/* ----- hero terminal parallax & glow halo --------------------------------- */
+.terminal {
+  transform: translate3d(0, var(--parallax-y, 0px), 0);
+  transition: transform 80ms linear, box-shadow 0.4s var(--ease-out);
+}
+.terminal::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 6px;
+  background: radial-gradient(circle at 50% 0%, color-mix(in oklch, var(--accent) 30%, transparent), transparent 60%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease-out);
+  z-index: -1;
+}
+.hero:hover .terminal::after { opacity: 0.55; }
+
+/* ----- nav: subtle reveal on scroll-up ------------------------------------ */
+nav.top {
+  transition: transform 0.3s var(--ease-out), backdrop-filter 0.3s ease;
+}
+nav.top.scrolled {
+  background: color-mix(in oklch, var(--bg) 95%, transparent);
+  box-shadow: 0 1px 0 0 color-mix(in oklch, var(--accent) 12%, transparent);
+}
+
+/* ----- buttons: soft ripple on click via CSS only ------------------------- */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, currentColor 8%, transparent 60%);
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+.btn:active::after {
+  opacity: 0.18;
+  transform: scale(1.4);
+  transition: opacity 0.05s ease, transform 0.05s ease;
+}
+
+/* ----- copy buttons get a tiny pulse on success --------------------------- */
+@keyframes pulse-ok {
+  0%   { box-shadow: 0 0 0 0 color-mix(in oklch, var(--accent) 60%, transparent); }
+  60%  { box-shadow: 0 0 0 8px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+.cp.ok { animation: pulse-ok 0.6s var(--ease-out); }
+
+/* ----- feature card: glyph rotates slightly on hover ---------------------- */
+.feat .glyph {
+  transition: transform 0.4s var(--ease-out), color 0.4s ease, border-color 0.4s ease;
+}
+.feat:hover .glyph {
+  transform: rotate(-6deg) scale(1.08);
+  border-color: var(--accent);
+}
+
+/* ----- step number: subtle counter-up shimmer ----------------------------- */
+.step::before {
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 24px color-mix(in oklch, var(--accent) 40%, transparent);
+}
+
+/* ----- doc-card: arrow translate on hover --------------------------------- */
+.doc-card .arrow {
+  transition: transform 0.3s var(--ease-out), letter-spacing 0.3s var(--ease-out);
+}
+.doc-card:hover .arrow {
+  transform: translateX(4px);
+  letter-spacing: 0.04em;
+}
+
+/* ----- View Transitions (Astro ClientRouter) ----------------------------- */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.32s;
+  animation-timing-function: var(--ease-out);
+}
+
+/* ----- focus visible ring ------------------------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+button:focus-visible,
+a:focus-visible {
+  outline-offset: 4px;
+}
+
+/* ----- reduced motion guard (re-affirms after effects) ------------------- */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  [data-tilt]:hover { transform: none !important; }
+  .terminal { transform: none !important; }
+}

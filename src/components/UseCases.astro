@@ -1,0 +1,32 @@
+---
+import { STRINGS, type Lang } from '~/i18n/strings';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = STRINGS[lang].usecases;
+---
+
+<section class="block" id="usecases" data-screen-label="usecases">
+  <div class="wrap">
+    <div class="eyebrow" data-animate>{t.eyebrow}</div>
+    <h2 class="section-title" data-animate data-delay="1">{t.title}</h2>
+
+    <div class="usecase-grid">
+      {t.cases.map((c, i) => (
+        <div class="usecase" data-tilt data-animate data-delay={String((i % 4) + 1)}>
+          <h4>{c.title}</h4>
+          <p set:html={c.body} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .usecase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+</style>

@@ -1,0 +1,51 @@
+---
+import { STRINGS, type Lang } from '~/i18n/strings';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = STRINGS[lang].hero;
+
+const REPO = 'https://github.com/lesquel/open-remote-control';
+---
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div data-animate>
+        <span class="tag"><span class="blink"></span> {t.tag}</span>
+        <h1 class="hero-title" data-glitch="true">
+          {t.titleLead} <span class="accent">{t.titleAccent}</span><br/>
+          {t.titleLine2}<br/>
+          {t.titleLine3}<span class="cursor"></span>
+        </h1>
+        <p class="hero-sub">
+          {t.sub}
+          <strong>{t.subOpenCode}</strong>
+          {t.subAnd}
+          <strong>{t.subCodex}</strong>
+          {t.subTail}
+        </p>
+
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#install">{t.ctaInstall}</a>
+          <a class="btn btn-ghost" href={REPO} target="_blank" rel="noopener">{t.ctaGithub}</a>
+        </div>
+
+        <div class="stat-row">
+          <div><b>{t.stat1Bold}</b> {t.stat1Body}</div>
+          <div><b>{t.stat2Bold}</b> {t.stat2Body}</div>
+          <div><b>{t.stat3Bold}</b> {t.stat3Body}</div>
+        </div>
+      </div>
+
+      <div class="terminal" aria-label="Terminal demo" data-animate data-delay="2">
+        <div class="term-head">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="title">{t.terminalTitle}</div>
+          <div class="status">{t.terminalLive}</div>
+        </div>
+        <div class="term-body" id="termBody"></div>
+      </div>
+    </div>
+  </div>
+</header>

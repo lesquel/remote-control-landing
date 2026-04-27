@@ -1,0 +1,82 @@
+---
+import { STRINGS, type Lang } from '~/i18n/strings';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = STRINGS[lang].roadmap;
+---
+
+<section class="block" id="roadmap" data-screen-label="roadmap">
+  <div class="wrap">
+    <div class="eyebrow" data-animate>{t.eyebrow}</div>
+    <h2 class="section-title" data-animate data-delay="1">{t.title}</h2>
+    <p class="section-sub" data-animate data-delay="2">{t.sub}</p>
+
+    <div class="roadmap-list">
+      {t.items.map((it, i) => (
+        <div class={`roadmap-card state-${it.state}`} data-tilt data-animate data-delay={String(i + 1)}>
+          <div class="roadmap-state">
+            <span class={`dot ${it.state}`}></span>
+            <span class="label">{t.stateLabels[it.state as keyof typeof t.stateLabels]}</span>
+          </div>
+          <h4>{it.title}</h4>
+          <p>{it.body}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="roadmap-cta" data-animate>
+      <p>
+        {t.cta}
+        <a href="https://github.com/lesquel/open-remote-control/issues" target="_blank" rel="noopener">{t.ctaLink}</a>
+        {t.ctaTail}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .roadmap-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 32px;
+  }
+  .roadmap-state {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .roadmap-state .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .roadmap-state .dot.shipped   { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+  .roadmap-state .dot.next      { background: var(--warn);   box-shadow: 0 0 8px var(--warn); }
+  .roadmap-state .dot.exploring { background: var(--fg-dim); }
+  .roadmap-state .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--fg-dim);
+  }
+  .state-shipped   { border-color: color-mix(in oklch, var(--accent) 40%, var(--line)); }
+  .state-next      { border-color: color-mix(in oklch, var(--warn)   40%, var(--line)); }
+
+  .roadmap-cta {
+    margin-top: 32px;
+    padding: 20px 24px;
+    border: 1px dashed var(--line-2);
+    border-radius: var(--radius);
+    background: var(--bg-1);
+  }
+  .roadmap-cta p {
+    margin: 0;
+    color: var(--fg-muted);
+    font-family: var(--sans);
+    font-size: 13px;
+  }
+</style>

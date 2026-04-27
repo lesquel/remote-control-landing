@@ -1,0 +1,40 @@
+---
+import { STRINGS, type Lang } from '~/i18n/strings';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = STRINGS[lang].features;
+---
+
+<section class="block" id="features" data-screen-label="features">
+  <div class="wrap">
+    <div class="eyebrow" data-animate>{t.eyebrow}</div>
+    <h2 class="section-title" data-animate data-delay="1">{t.title}</h2>
+    <p class="section-sub" data-animate data-delay="2">{t.sub}</p>
+
+    <div class="tabs" role="tablist" data-animate data-delay="3">
+      {t.panels.map((p, i) => (
+        <button
+          class="tab"
+          role="tab"
+          aria-selected={i === 0 ? 'true' : 'false'}
+          data-panel={p.id}
+        >
+          <span class="n">{p.n}</span> {p.label}
+        </button>
+      ))}
+    </div>
+
+    {t.panels.map((p, i) => (
+      <div class={`tab-panel${i === 0 ? ' active' : ''}`} id={p.id}>
+        {p.items.map((f) => (
+          <div class="feat" data-n={f.n} data-tilt>
+            <div class="glyph">{f.glyph}</div>
+            <h3>{f.title}</h3>
+            <p>{f.body}</p>
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
+</section>
